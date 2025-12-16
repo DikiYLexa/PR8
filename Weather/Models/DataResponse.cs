@@ -22,14 +22,6 @@ namespace Weather.Models
         public int humidity {  get; set;}
         public int prec_type { get; set;}
         public int temp {  get; set;}
-        public int uv_index { get; set;}
-        public int visibility { get; set;}
-        public int wind_angle { get; set;}
-        public string wind_dir { get; set;}
-        public double wind_gust { get; set;}
-        public double wind_speed { get; set;}
-        public int? cloud_cover_hight { get; set;}
-        public int? cloud_cover_middle { get; set;}
-        public int? cloud_cover_low { get; set;}
+       
     }
 }
