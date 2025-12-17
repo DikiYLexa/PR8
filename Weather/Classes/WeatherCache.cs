@@ -44,7 +44,7 @@ namespace Weather.Models
         public int Id { get; set; }
 
         [Required]
-        [Column("request_date")]
+        [Column("request_date")] 
         public DateTime RequestDate { get; set; }
 
         [Required]
