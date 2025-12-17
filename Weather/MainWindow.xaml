@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Weather"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" Background="#FF0F172A">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -15,7 +15,12 @@
         </Grid.RowDefinitions>
 
         <!-- Панель поиска города -->
-        <Border Grid.Row="0" Background="#FF1A2B44" Padding="15">
+        <Border Grid.Row="0" 
+            Background="#1E293B" 
+            Padding="20" 
+            CornerRadius="0,0,20,20"
+            BorderThickness="0,0,0,1"
+            BorderBrush="#334155">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -23,71 +28,168 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Город:" 
-                       Foreground="White" 
-                       FontSize="16" 
-                       VerticalAlignment="Center"
-                       Margin="0,0,10,0"/>
+                <Viewbox Grid.Column="0" 
+                     Width="24" 
+                     Height="24" 
+                     VerticalAlignment="Center" 
+                     Margin="0,0,15,0">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" 
+                          Stroke="#94A3B8" 
+                          StrokeThickness="2" 
+                          
+                          StrokeLineJoin="Round"/>
+                    </Canvas>
+                </Viewbox>
 
-                <TextBox Grid.Column="1" 
-                     x:Name="CityTextBox" 
-                     Height="35" 
-                     Background="White"
-                     Foreground="Black"
-                     FontSize="14"
-                     VerticalContentAlignment="Center"
-                     Padding="10,0"/>
+                <Border Grid.Column="1" 
+                    Background="#0F172A" 
+                    CornerRadius="12" 
+                    Height="48"
+                    Padding="2">
+                    <TextBox x:Name="CityTextBox"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="White"
+                         FontSize="16"
+                         VerticalContentAlignment="Center"
+                         Padding="15,0"
+                         
+                        >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </Border>
 
-                <Button Grid.Column="2" 
-                    x:Name="SearchButton"
-                    Content="Найти" 
-                    Click="SearchButton_Click"
-                    Width="100" 
-                    Height="35" 
-                    Margin="15,0,0,0" 
-                    Background="#FF2A7BDE" 
-                    Foreground="White"
-                    FontSize="14"/>
+                <Button Grid.Column="2"
+    x:Name="SearchButton"
+    Content="ПОИСК"
+    Click="SearchButton_Click"
+    Width="120"
+    Height="48"
+    Margin="15,0,0,0">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#3B82F6" Offset="0"/>
+                        <GradientStop Color="#8B5CF6" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Foreground>White</Button.Foreground>
+                <Button.FontSize>14</Button.FontSize>
+                <Button.FontWeight>SemiBold</Button.FontWeight>
+               
+                <Button.BorderThickness>0</Button.BorderThickness>
+                <Button.Cursor>Hand</Button.Cursor>
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="0"
+                          BlurRadius="20"
+                          Color="#3B82F6"
+                          Opacity="0.4"/>
+                </Button.Effect>
+                </Button>
             </Grid>
         </Border>
 
         <!-- Заголовок с датой -->
-        <Border Grid.Row="1" Background="#FF1A2B44" Padding="20,15">
+        <Border Grid.Row="1" 
+            Background="Transparent" 
+            Padding="25,20"
+            Margin="0,-10,0,0">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Border Background="#1E293B" 
+                    CornerRadius="20"
+                    Opacity="0.8">
+                    <Border.Effect>
+                        <BlurEffect Radius="10"/>
+                    </Border.Effect>
+                </Border>
 
-                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
-                    <TextBlock x:Name="LocationText" Text="Пермь, Россия" FontSize="20" Foreground="#FF8FA3C2"/>
+                <Grid Margin="20,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <ComboBox SelectionChanged="SelectDay" 
-                              Name="Days" 
-                              Width="200" 
-                              Height="30" 
-                              Background="White"
-                              Foreground="Black"
-                              BorderBrush="#FF3A4B64"
-                              VerticalAlignment="Center">
-                        </ComboBox>
+                    <Viewbox Grid.Column="0" 
+                         Width="40" 
+                         Height="40" 
+                         VerticalAlignment="Center">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M12 2C15.866 2 19 5.13401 19 9C19 14.25 12 22 12 22C12 22 5 14.25 5 9C5 5.13401 8.13401 2 12 2ZM12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6Z" 
+                              Fill="#3B82F6"/>
+                        </Canvas>
+                    </Viewbox>
 
-                        <Button Content="Обновить" 
-                            Click="UpdateWeather" 
-                            Width="100" 
-                            Height="30" 
-                            Margin="15,0,0,0" 
-                            Background="#FF2A7BDE" 
-                            Foreground="White"
-                            VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="1" 
+                            VerticalAlignment="Center" 
+                            Margin="20,0,0,0">
+                        <TextBlock x:Name="LocationText" 
+                               Text="Пермь, Россия" 
+                               FontSize="28" 
+                               Foreground="White"
+                               FontWeight="SemiBold"/>
+
+                        <StackPanel Orientation="Horizontal" 
+                                Margin="0,15,0,0"
+                                VerticalAlignment="Center">
+                            <Border Background="#0F172A" 
+                                CornerRadius="10"
+                                Height="40"
+                                Width="220"
+                                Padding="1">
+                                <ComboBox SelectionChanged="SelectDay" 
+                                      Name="Days" 
+                                      Background="Transparent"
+                                      BorderThickness="0"
+                                      Foreground="White"
+                                      FontSize="14"
+                                      VerticalAlignment="Center"
+                                      Padding="15,0">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" 
+                                                   Foreground="White"
+                                                   Padding="10,8"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Border>
+
+                            <Button Content="⟳"
+                                Click="UpdateWeather" 
+                                Width="40" 
+                                Height="40" 
+                                Margin="15,0,0,0" 
+                                Background="#3B82F6" 
+                                Foreground="White"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                
+                                BorderThickness="0"
+                                Cursor="Hand">
+                                <Button.Effect>
+                                    <DropShadowEffect ShadowDepth="0" 
+                                                  BlurRadius="15" 
+                                                  Color="#3B82F6"
+                                                  Opacity="0.5"/>
+                                </Button.Effect>
+                            </Button>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </Grid>
         </Border>
 
         <!-- Заголовки таблицы -->
-        <Border Grid.Row="2" Background="#FF142031" Padding="10,5">
+        <Border Grid.Row="2" 
+            Background="#1E293B" 
+            Padding="25,15"
+            Margin="20,0,20,10"
+            CornerRadius="15">
             <Grid x:Name="HeaderGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.15*"/>
@@ -96,16 +198,60 @@
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Время" Foreground="#FF8FA3C2" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Text="Погода" Foreground="#FF8FA3C2" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="2" Text="Осадки" Foreground="#FF8FA3C2" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="3" Text="Влажность" Foreground="#FF8FA3C2" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="0" 
+                       Text="⏰ ВРЕМЯ" 
+                       Foreground="#94A3B8" 
+                       FontSize="12" 
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="1" 
+                       Text="☁️ ПОГОДА" 
+                       Foreground="#94A3B8" 
+                       FontSize="12" 
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="2" 
+                       Text="💧 ОСАДКИ" 
+                       Foreground="#94A3B8" 
+                       FontSize="12" 
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="3" 
+                       Text="💨 ВЛАЖНОСТЬ" 
+                       Foreground="#94A3B8" 
+                       FontSize="12" 
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
             </Grid>
         </Border>
 
         <!-- Область с прогнозом -->
-        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel Name="parent" Margin="10"/>
+        <ScrollViewer Grid.Row="3" 
+                  VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Disabled"
+                  Margin="20,0,20,20"
+                  Padding="0,0,0,5">
+            <StackPanel Name="parent">
+                <!-- Пример элемента прогноза для стилизации -->
+                <Border Background="#1E293B" 
+                    CornerRadius="15" 
+                    Margin="0,0,0,10"
+                    Padding="0"
+                    Opacity="0.9">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0" 
+                                      BlurRadius="20" 
+                                      Color="#000000"
+                                      Opacity="0.1"/>
+                    </Border.Effect>
+                </Border>
+            </StackPanel>
         </ScrollViewer>
+
+       
     </Grid>
 </Window>
