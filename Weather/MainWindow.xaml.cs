@@ -18,6 +18,7 @@ namespace Weather
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataResponce response;
         public MainWindow()
         {
             InitializeComponent();
@@ -25,7 +26,27 @@ namespace Weather
         }
         public async void Iint()
         {
-            DataResponse response = await GetWeather.Get(58.011242f, 56.225747f);
+            response = await GetWeather.Get(58.011242f, 56.225747f);
+
+            foreach(Forecast forecast in response.forecasts)
+            {
+                Days.Items.Add(forecast.date.ToString("dd.MM.yyyy"));
+            }
+            Create(0);
+        }
+        public void Create(int idForecast)
+        {
+            foreach (Hour hour in response.forecasts[idForecast].hours)
+            {
+                parent.Children.Add(new Elements.Item(hour));
+            }
+        }
+
+      
+
+        private void SelectDay(object sender, RoutedEventArgs e)
+        {
+            Create(Days.SelectedIndex);
         }
     }
 }
