@@ -11,8 +11,8 @@ namespace Weather
     public partial class MainWindow : Window
     {
         DataResponce responce;
-        private float currentLat = 58.009671f;
-        private float currentLon = 56.226184f;
+        private float currentLat = 58.0105f;
+        private float currentLon = 56.2294f;
         private string currentCity = "Пермь";
         private readonly CacheService _cacheService;
         private readonly DispatcherTimer _cleanupTimer;
@@ -127,8 +127,8 @@ namespace Weather
                             Days.SelectedIndex = 0;
                         }
 
-                        string sourceInfo = fromCache ? " (из кэша)" : " (актуальные)";
-                        LocationText.Text = $"{currentCity}{sourceInfo}";
+                       
+                        LocationText.Text = $"{currentCity}";
                     }
 
                     Create(0);
@@ -244,6 +244,11 @@ namespace Weather
             _cleanupTimer.Stop();
             _cacheService?.Dispose();
             base.OnClosed(e);
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

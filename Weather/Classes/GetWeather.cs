@@ -49,7 +49,7 @@ namespace Weather.Classes
                 if (nextTime.HasValue)
                 {
                     var timeLeft = nextTime.Value - System.DateTime.Now;
-                    throw new System.Exception($"Достигнут лимит запросов. Следующий запрос через {timeLeft.Minutes} минут {timeLeft.Seconds} секунд. Осталось запросов сегодня: {remaining}");
+                    throw new System.Exception($"Ваш запрос в КД ожидайте еще {timeLeft.Minutes} минут. Кол-во ваших запросов: {remaining}");
                 }
                 else
                 {
